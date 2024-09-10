@@ -78,7 +78,9 @@ Warning: You should consider setting the environment variable LOG_DIR. Defaults 
 Server started. Listening on ('192.168.56.101', 8888)...
 ```
 
-
+```
+sudo firewall-cmd --zone=public --add-port=8888/tcp
+```
 
 
 

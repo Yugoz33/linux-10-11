@@ -58,10 +58,10 @@ I. Partie 1 : Host & Hack
 
 🌞 Télécharger l'application depuis votre VM
 ```
-[hugo@efrei-xmg4agau1 ~]$ curl -O https://gitlab.com/it4lik/b3-csec-2024/-/blob/main/efrei_server
+[hugo@efrei-xmg4agau1 ~]$ curl -O https://gitlab.com/it4lik/b3-csec-2024/-/raw/main/efrei_server
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-100 39784  100 39784    0     0  62750      0 --:--:-- --:--:-- --:--:-- 62651
+100 7044k  100 7044k    0     0  8718k      0 --:--:-- --:--:-- --:--:-- 8707k
 ```
 
 ```
@@ -69,4 +69,48 @@ I. Partie 1 : Host & Hack
 efrei_server
 [hugo@efrei-xmg4agau1 ~]$ chmod +x efrei_server
 ```
+
+🌞 Lancer l'application efrei_server
+
+```
+[hugo@efrei-xmg4agau1 ~]$ LISTEN_ADDRESS=192.168.56.101 ./efrei_server
+Warning: You should consider setting the environment variable LOG_DIR. Defaults to /tmp.
+Server started. Listening on ('192.168.56.101', 8888)...
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

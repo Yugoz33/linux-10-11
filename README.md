@@ -38,3 +38,19 @@ ssh
 
 🌞 Fichiers /etc/sudoers /etc/passwd /etc/group dans le dépôt de compte-rendu svp !
 
+```
+## Allows people in group wheel to run all commands
+%wheel  ALL=(ALL)       ALL
+```
+
+```
+hugo:x:1000:1000:hugo:/home/hugo:/bin/bash
+```
+
+```
+wheel:x:10:hugo
+```
+
+
+
+

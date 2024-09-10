@@ -24,5 +24,17 @@ Sep 10 04:14:38 localhost systemd[1]: Started firewalld - dynamic firewall daemo
 [sudo] password for hugo:
 cockpit dhcpv6-client ssh
 ```
+
+```
+[hugo@efrei-xmg4agau1 ~]$ sudo firewall-cmd --permanent --remove-service=cockpit
+success
+[hugo@efrei-xmg4agau1 ~]$ sudo firewall-cmd --permanent --remove-service=dhcpv6-client
+success
+[hugo@efrei-xmg4agau1 ~]$ sudo firewall-cmd --reload
+success
+[hugo@efrei-xmg4agau1 ~]$ sudo firewall-cmd --list-services
+ssh
+```
+
 🌞 Fichiers /etc/sudoers /etc/passwd /etc/group dans le dépôt de compte-rendu svp !
 

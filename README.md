@@ -1,5 +1,7 @@
 # linux-10-11
 
+0. Prérequis
+
 🌞 Boom ça commence direct : je veux l'état initial du firewall
 
 ```
@@ -52,6 +54,15 @@ hugo:x:1000:1000:hugo:/home/hugo:/bin/bash
 wheel:x:10:hugo
 ```
 
+I. Partie 1 : Host & Hack
+
+🌞 Télécharger l'application depuis votre VM
+```
+[hugo@efrei-xmg4agau1 ~]$ curl -O https://gitlab.com/it4lik/b3-csec-2024/-/blob/main/efrei_server
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 39784  100 39784    0     0  62750      0 --:--:-- --:--:-- --:--:-- 62651
+```
 
 
 

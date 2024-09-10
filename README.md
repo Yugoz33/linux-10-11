@@ -64,5 +64,9 @@ I. Partie 1 : Host & Hack
 100 39784  100 39784    0     0  62750      0 --:--:-- --:--:-- --:--:-- 62651
 ```
 
-
+```
+[hugo@efrei-xmg4agau1 ~]$ ls
+efrei_server
+[hugo@efrei-xmg4agau1 ~]$ chmod +x efrei_server
+```
 

@@ -18,3 +18,11 @@
 Sep 10 04:14:37 localhost systemd[1]: Starting firewalld - dynamic firewall daemon...
 Sep 10 04:14:38 localhost systemd[1]: Started firewalld - dynamic firewall daemon.
 ```
+
+```
+[hugo@efrei-xmg4agau1 ~]$ sudo firewall-cmd --list-services
+[sudo] password for hugo:
+cockpit dhcpv6-client ssh
+```
+🌞 Fichiers /etc/sudoers /etc/passwd /etc/group dans le dépôt de compte-rendu svp !
+

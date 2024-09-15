@@ -225,8 +225,8 @@ Group=app_user
 
 ```
 [hugo@efrei-xmg4agau1 ~]$ ps aux | grep efrei_app
-efreius+   13916  0.2  0.1   2956  1884 ?        Ss   09:22   0:00 /usr/local/bin/efrei_app
-efreius+   13918  0.1  1.4  33772 25984 ?        S    09:22   0:00 /usr/local/bin/efrei_app
+efrei_a+   13916  0.2  0.1   2956  1884 ?        Ss   09:22   0:00 /usr/local/bin/efrei_app
+efrei_a+   13918  0.1  1.4  33772 25984 ?        S    09:22   0:00 /usr/local/bin/efrei_app
 hugo      13924  0.0  0.1   6408  2176 pts/0    S+   09:22   0:00 grep --color=auto efrei_app
 ```
 

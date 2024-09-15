@@ -77,11 +77,24 @@ efrei_server
 Warning: You should consider setting the environment variable LOG_DIR. Defaults to /tmp.
 Server started. Listening on ('192.168.56.101', 8888)...
 ```
+🌞 Prouvez que l'application écoute sur l'IP que vous avez spécifiée
+```
+[hugo@efrei-xmg4agau1 ~]$ ss -tuln | grep 8888
+tcp   LISTEN 0      100    192.168.56.114:8888      0.0.0.0:*
+```
+2. Prêts
+🌞 Se connecter à l'application depuis votre PC
 
 ```
-sudo firewall-cmd --zone=public --add-port=8888/tcp
-```
+hugo@efrei-xmg4agau1 ~$ nc 192.168.56.114 8888
+Hello ! Tu veux des infos sur quoi ?
+1) cpu
+2) ram
+3) disk
+4) ls un dossier
 
+Ton choix (1, 2, 3 ou 4) :
+```
 
 
 

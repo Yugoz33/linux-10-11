@@ -152,8 +152,8 @@ Environment=LISTEN_ADDRESS=192.168.56.114
      Memory: 32.5M
         CPU: 62ms
      CGroup: /system.slice/efrei_server.service
-             ├─13262 /home/antna/efrei_app
-             └─13263 /home/antna/efrei_app
+             ├─13262 /home/hugo/efrei_app
+             └─13263 /home/hugo/efrei_app
 
 Sep 10 08:11:33 localhost.localdomain systemd[1]: Started Super serveur EFREI.
 ```
@@ -164,7 +164,105 @@ Sep 10 08:11:33 localhost.localdomain systemd[1]: Started Super serveur EFREI.
 tcp   LISTEN 0      100    192.168.56.114:8888      0.0.0.0:*
 ```
 
+III. MAKE SERVICES GREAT AGAIN
 
+1. Restart automatique
+Bon pour ça, facile, on va juste faire en sorte que si le programme coupe, il soit relancé automatiquement.
+
+
+🌞 Ajoutez une clause dans le fichier efrei_server.service pour le restart automatique
+```
+[Unit]
+Description=Super serveur EFREI
+
+[Service]
+Type=daemon
+ExecStart=/usr/local/bin/efrei_app
+Environment=LISTEN_ADDRESS=192.168.56.114
+
+User=hugo
+Group=hugo
+
+Restart=always
+```
+🌞 Testez que ça fonctionne
+
+```
+[hugo@efrei-xmg4agau1 ~]$ ps -e | grep efrei_app
+  13435 ?        00:00:00 efrei_app
+```
+
+```  
+[hugo@efrei-xmg4agau1 ~]$ kill 13435
+```
+
+```
+[hugo@efrei-xmg4agau1 ~]$ ps -e | grep efrei_app
+  13462 ?        00:00:00 efrei_app
+```
+
+2. Utilisateur applicatif
+Lorsqu'un programme s'exécute sur une machine (peu importe l'OS ou le contexte), le programme est toujours exécuté sous l'identité d'un utilisateur.
+Ainsi, pendant son exécution, le programme aura les droits de cet utilisateur.
+
+Par exemple, un programme lancé en tant que toto pourra lire un fichier /var/log/toto.log uniquement si l'utilisateur toto a les droits sur ce fichier.
+
+🌞 Créer un utilisateur applicatif
+```
+
+[hugo@efrei-xmg4agau1 ~]$ sudo useradd app_user
+```
+
+
+🌞 Modifier le service pour que ce nouvel utilisateur lance le programme efrei_server
+
+```
+User=app_user
+Group=app_user
+```
+
+🌞 Vérifier que le programme s'exécute bien sous l'identité de ce nouvel utilisateur
+
+```
+[hugo@efrei-xmg4agau1 ~]$ ps aux | grep efrei_app
+efreius+   13916  0.2  0.1   2956  1884 ?        Ss   09:22   0:00 /usr/local/bin/efrei_app
+efreius+   13918  0.1  1.4  33772 25984 ?        S    09:22   0:00 /usr/local/bin/efrei_app
+hugo      13924  0.0  0.1   6408  2176 pts/0    S+   09:22   0:00 grep --color=auto efrei_app
+```
+
+3. Maîtrisez l'emplacement des fichiers
+
+🌞 Choisir l'emplacement du fichier de logs
+
+```
+[hugo@efrei-xmg4agau1 ~]$ sudo mkdir /var/log/efreiapp
+```
+
+```
+Environment="LOG_DIR=/var/log/efreiapp/"
+```
+
+🌞 Maîtriser les permissions du fichier de logs
+
+```
+[hugo@efrei-xmg4agau1 bin]$ sudo mkdir /var/log/efreiapp
+[hugo@efrei-xmg4agau1 bin]$ sudo chown efreiuser:efreiuser /var/log/efreiapp/
+[hugo@efrei-xmg4agau1 bin]$ ls -al /var/log/efreiapp/
+total 8
+drwxr-xr-x. 2 efreiuser efreiuser   24 Sep 10 10:27 .
+drwxr-xr-x. 8 root      root      4096 Sep 10 10:25 ..
+-rw-r--r--. 1 efreiuser efreiuser   60 Sep 10 10:27 server.log
+```
+
+
+4. Security hardening
+Il existe beaucoup de clauses qu'on peut ajouter dans un fichier .service pour que systemd s'occupe de sécuriser le service, en l'isolant du reste du système par exemple.
+
+Ainsi, une commande est fournie systemd-analyze security qui permet de voir quelles mesures de sécurité on a activé. Un score (un peu arbitraire) est attribué au service ; cela représente son "niveau de sécurité".
+
+Cette commande est très pratique d'un point de vue pédagogique : elle va vous montrer toutes les clauses qu'on peut ajouter dans un .service pour renforcer sa sécurité.
+
+🌞 Modifier le .service pour augmenter son niveau de sécurité
 
 
 

